@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lets play 421 game</title>
+
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link href="/css/style.css" rel="stylesheet"/>
+    <script src="/js/sockjs-0.3.4.js"></script>
+    <script src="/js/stomp.js"></script>
+
+    <script>
+        let playersInGame = JSON.parse("[[${playersInGame}]]".replace(/&quot;/g, '"'));
+        let roomHost = "[[${roomHost}]]";
+        let currentPlayerUsername = "[[${currentPlayerUsername}]]";
+        let gameName = "[[${gameName}]]";
+        let turn = 0;
+        let player_to_roll_index = turn % playersInGame.length;
+        let playerToRoll = playersInGame[player_to_roll_index];
+
+
+        let numberOfRoll = 0
+        let pot = 21;
+        let phase = 0;
+        let nbRound = 1;
+        let scoreList = new Array(playersInGame.length).fill(0);
+        let playerTokenList = new Array(playersInGame.length).fill(0);
+        let isReroll = 0;
+        let tokenToTake = 0;
+        let playersReroll = [];
+        let notSkipRerollPlayerIndex = [];
+        let scoreRerollList = new Array(playersReroll.length).fill(0);
+        let startPhaseDecharge = 1;
+        let previousNumberOfRoll = 3;
+        let turnCounter = 0;
+        let winnerIndex = 99;
+
+    </script>
+    <script src="/js/game_interface.js"></script>
+    <script src="/js/connect_websocket.js"></script>
+
+
+</head>
+<body>
+<div style="display: flex;">
+    <div style="width: 80%;">
+        <div>
+            <div id="pot" style="display: flex;justify-content: center;">21</div>
+        </div>
+        <div id="reroll" style="display: flex;justify-content: center;">&nbsp;</div>
+        <div style="display: flex;justify-content: space-between;">
+            <div>
+                <div id="player0"></div>
+                <div id="player0_token" style="display: flex;justify-content: center;"></div>
+            </div>
+            <div>
+                <div id="player1"></div>
+                <div id="player1_token" style="display: flex;justify-content: center;"></div>
+            </div>
+        </div>
+        <div id="dices" style="display: flex;justify-content: center;">
+            <div>
+                <div id="dice1" style="display: flex;justify-content: center;">0</div>
+                <input id="dice1_select" type="checkbox" checked disabled>
+            </div>
+            <div>
+                <div id="dice2" style="display: flex;justify-content: center;">0</div>
+                <input id="dice2_select" type="checkbox" checked disabled>
+            </div>
+            <div>
+                <div id="dice3" style="display: flex;justify-content: center;">0</div>
+                <input id="dice3_select" type="checkbox" checked disabled>
+            </div>
+        </div>
+        <div style="display: flex;justify-content: space-between;">
+            <div>
+                <div id="player2"></div>
+                <div id="player2_token" style="display: flex;justify-content: center;"></div>
+            </div>
+            <div>
+                <div id="player3"></div>
+                <div id="player3_token" style="display: flex;justify-content: center;"></div>
+            </div>
+        </div>
+        <div style="display: flex;justify-content: center;">
+            <button id="roll" disabled>Roll</button>
+            <button id="finish_turn" disabled>Done</button>
+        </div>
+
+    </div>
+    <div id="game_info" style="color: black; overflow-y: auto">
+        <p id="game_info_detail"></p>
+    </div>
+</div>
+
+
+</body>
+</html>

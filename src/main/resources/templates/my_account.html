@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My account</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/css/style.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="/js/my_account.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+
+</head>
+<body>
+<div>
+    <h1 style="text-align: center">My account</h1>
+    <div class="tab" style="background: darkolivegreen;">
+        <a href="#"><button class="tablinks">Info</button></a>
+        <a href="/my_account/edit"><button class="tablinks">Edit</button></a>
+        <a href="/my_account/game_history"><button class="tablinks">Game history</button></a>
+    </div>
+
+    <div style="display:inline">
+        <p style="display:inline"><b>Username:</b></p> <span th:text="${player.username}"></span>
+        <br>
+        <p style="display:inline"><b>Age: </b></p> <span th:text="${player.age}"></span>
+        <br>
+        <p style="display:inline"><b>Sexe: </b></p> <span th:text="${player.sexe}"></span>
+        <br>
+        <p style="display:inline"><b>Ville: </b></p> <span th:text="${player.ville}"></span>
+        <br>
+        <p style="display:inline"><b>Mean jet charge: </b></p> <span th:text="${player.meanJetCharge}"></span>
+        <br>
+        <p style="display:inline"><b>Mean jet decharge: </b></p> <span th:text="${player.meanJetDecharge}"></span>
+        <br>
+        <p style="display:inline"><b>Mean win: </b></p> <span th:text="${player.meanWin}"></span>
+        <br>
+        <p style="display:inline"><b>Nb game: </b></p> <span th:text="${player.nbGame}"></span>
+        <br>
+        <p style="display:inline"><b>Nb win: </b></p> <span th:text="${player.nbWin}"></span>
+    </div>
+
+</div>
+</body>
+</html>
